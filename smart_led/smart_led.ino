@@ -18,7 +18,7 @@ void setup() {
   pinMode(LIGHT, OUTPUT);
   pinMode(BUTTON, INPUT);
   LCD.begin(16, 2);
-  Serial.begin(9000);
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -54,6 +54,7 @@ void photoProcess() {
   int mappedPhotoValue = map(photoValue, 0, 1023, 0, 255);
   int tempValue = 255 - mappedPhotoValue * FIX_PHOTO_SENSITIVITY;
   outputPhotoValue = tempValue <= 0 ? 0 : tempValue;
+  Serial.println(outputPhotoValue);
   analogWrite(LIGHT, outputPhotoValue);
 }
 
